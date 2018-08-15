@@ -4,26 +4,26 @@
  * @author: feihu1996.cn
  * @date:  18-08-13
  * @version: 1.0
- */
+*/
 
 //  加载net模块
 // 包含了node需要的所有tcp功能
- var net = require("net");
+var net = require("net");
 
- // 创建一个新的tcp 服务器
- var chatServer = net.createServer();
+// 创建一个新的tcp 服务器
+var chatServer = net.createServer();
 
- // 创建一个列表，
+// 创建一个列表，
 // 当一个新的客户端出现时,
 // 就把它添加到列表中,
 // 就可以利用此列表实现客户端之间的通信
- var clientList = [];
+var clientList = [];
 
  //  调用 on() 方法来添加一个事件监听器
  // 每当有新的客户端通过网络连接接入服务器,\
  // 就会触发 connection 事件,\
  // 事件监听器就会调用我们指定的函数
- chatServer.on("connection", function(client){
+chatServer.on("connection", function(client){
     /*
         连接事件在调用回调函数时,
         会传给我们新客户端所对应的 TCP socket 对象的引用
@@ -79,9 +79,9 @@
 
     // 关闭连接
     // client.end();
- });
+});
 
- function broadcast(message, client) {
+function broadcast(message, client) {
     var cleanup = [];
     // 把数据发送给所有客户端
     // 除了发送消息的客户端
@@ -101,9 +101,9 @@
     for(var i=0;i<cleanup.length;i++){
         clientList.splice(clientList.indexOf(cleanup[i]), 1);
     }
- }
+}
 
  // 指定监听的端口
- chatServer.listen(9000);
+chatServer.listen(9000);
  
- console.log("chat server running at port:9000");
+console.log("chat server running at port:9000");

@@ -9,12 +9,12 @@
 var http = require('http'),
           fs = require('fs');          
  
- // 创建一个存活在全局范围内的匿名对象，\
- // 并开始事件监听状态
- http.createServer(function(req, res){ 
-     /*
-     回调函数，每当一个新的请求到达Web服务器， 它都会被调用
-     */
+// 创建一个存活在全局范围内的匿名对象，\
+// 并开始事件监听状态
+http.createServer(function(req, res){ 
+    /*
+    回调函数，每当一个新的请求到达Web服务器， 它都会被调用
+    */
 
     // 规范化 url,去掉查询字符串、可选的反斜杠,并把它变成小写
     var path = req.url.replace(/\/?(?:\?.*)?$/, '').toLowerCase();
@@ -46,9 +46,9 @@ var http = require('http'),
             serveStaticFile(res, '/public/404.html', 'text/html', 404);
             break;
     }
- }).listen(8080, "127.0.0.1");
+}).listen(8080, "127.0.0.1");
 
- function serveStaticFile(res, path, contentType, responseCode) {
+function serveStaticFile(res, path, contentType, responseCode) {
     if (!responseCode) responseCode = 200;
     fs.readFile(__dirname + path, function (err, data) {
         if (err) {
@@ -62,6 +62,6 @@ var http = require('http'),
     });
 }
 
- // 在标准输出stdout上输出提示信息
- console.log("Server running at http://127.0.0.1:8080");
+// 在标准输出stdout上输出提示信息
+console.log("Server running at http://127.0.0.1:8080");
  
